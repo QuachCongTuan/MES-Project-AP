@@ -59,11 +59,11 @@ public class EmployeeManage implements ActionEmp<Employee, Department, Position>
         Employee emp = new Employee();
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter Employee ID: ");
-        String empID;
-        do {
+        String empID = sc.nextLine();
+        while (checkID(list, empID)) {
             System.out.println("Employee ID is Invalid!");
             empID = sc.nextLine();
-        } while (checkID(list, empID));
+        }
         emp.setEmpID(empID);
         System.out.println("Enter Employee Name: ");
         String empName = sc.nextLine();
@@ -174,9 +174,9 @@ public class EmployeeManage implements ActionEmp<Employee, Department, Position>
     @Override
     public void show(ArrayList<Employee> list) {
         for (int i = 0; i < list.size(); i++) {
-            System.out.printf("|%-10s|%-20s|%-20s|%-10s|%-10s|%-10s|%n", "ID", "Name", "Email", "Working Hours",
+            System.out.printf("|%-20s|%-20s|%-20s|%-20s|%-30s|%-30s|%n", "ID", "Name", "Email", "Working Hours",
                     "Department", "Position");
-            System.out.printf("|%-10s|%-20s|%-20s|%-10s|%-10s|%-10s|%n", list.get(i).getEmpID(),
+            System.out.printf("|%-20s|%-20s|%-20s|%-20s|%-30s|%-30s|%n", list.get(i).getEmpID(),
                     list.get(i).getEmpName(), list.get(i).getEmpEmail(), list.get(i).getWorkingHours(),
                     list.get(i).getDep().getDepName(), list.get(i).getPos().getPosName());
         }

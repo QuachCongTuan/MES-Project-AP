@@ -5,15 +5,15 @@ public class Department {
     public String depName;
     public double depSalary;
 
-    // public Department() {
-    // super();
-    // }
+    public Department() {
 
-    // public Department(String depID, String depName, double depSalary) {
-    // this.depID = depID;
-    // this.depName = depName;
-    // this.depSalary = depSalary;
-    // }
+    }
+
+    public Department(String depID, String depName, double depSalary) {
+        this.depID = depID;
+        this.depName = depName;
+        this.depSalary = depSalary;
+    }
 
     public String getDepID() {
         return depID;

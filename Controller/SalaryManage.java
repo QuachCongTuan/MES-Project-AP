@@ -35,11 +35,11 @@ public class SalaryManage implements ActionSalary<Salary, Employee> {
         Salary sal = new Salary();
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter Salary ID: ");
-        String salaryID;
-        do {
-            System.out.println("Salary ID is Invalid!");
+        String salaryID = sc.nextLine();
+        while (salaryID.length() != 6) {
+            System.out.println("Enter Salary ID: ");
             salaryID = sc.nextLine();
-        } while (checkID(list, salaryID));
+        }
         sal.setSalaryID(salaryID);
         System.out.println("Enter Employee ID: ");
         String empID = sc.nextLine();
@@ -55,9 +55,9 @@ public class SalaryManage implements ActionSalary<Salary, Employee> {
         if (countemp == list2.size()) {
             System.out.println("Employee not found");
         }
-        System.out.println("Enter Date: XX-XX-XXXX");
+        System.out.println("Enter Date: dd-MM-yyyy");
         String date = sc.nextLine();
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         Date time1 = null;
         try {
             time1 = format.parse(date);
@@ -90,16 +90,16 @@ public class SalaryManage implements ActionSalary<Salary, Employee> {
                 if (countemp == list2.size()) {
                     System.out.println("Employee not found");
                 }
-                System.out.println("Enter Date: XXXX-XX-XX");
-                SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
-                String dateInString = sc.nextLine();
-                Date date = null;
+                System.out.println("Enter Date: dd-MM-yyyy");
+                String date = sc.nextLine();
+                SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+                Date time1 = null;
                 try {
-                    date = formatter.parse(dateInString);
-                } catch (Exception e) {
-                    e.printStackTrace();
+                    time1 = format.parse(date);
+                } catch (ParseException ex) {
+
                 }
-                list.get(i).setSalaryDate(date);
+                list.get(i).setSalaryDate(time1);
                 countsal++;
             }
         }

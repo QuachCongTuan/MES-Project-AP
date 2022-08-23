@@ -8,12 +8,30 @@ import Controller.*;
 
 public class Main {
     public static void main(String[] args) {
+        Department dep1 = new Department("DEV", "Developer", 20.0);
+        Department dep2 = new Department("QA", "Quality Assurance", 15.0);
+        Department dep3 = new Department("HR", "Human Resource", 10.0);
+
+        Position pos1 = new Position("FRE", "Fresher", 0.5);
+        Position pos2 = new Position("JUN", "Junior", 30.0);
+        Position pos3 = new Position("SEN", "Senior", 55.5);
+
         System.out.println("Management Employee System");
         ArrayList<Department> depList = new ArrayList<Department>();
+
+        depList.add(dep1);
+        depList.add(dep2);
+        depList.add(dep3);
+
         DepartmentManage depManage = new DepartmentManage();
         ArrayList<Employee> empList = new ArrayList<Employee>();
+
         EmployeeManage empManage = new EmployeeManage();
         ArrayList<Position> posList = new ArrayList<Position>();
+        posList.add(pos1);
+        posList.add(pos2);
+        posList.add(pos3);
+
         PositionManage posManage = new PositionManage();
         ArrayList<Salary> salList = new ArrayList<Salary>();
         SalaryManage salManage = new SalaryManage();
@@ -30,7 +48,6 @@ public class Main {
             System.out.println("||||                                                   ||||");
             System.out.println("==========================================================");
             System.out.println("==========================================================");
-
             Scanner sc = new Scanner(System.in);
             int choose = sc.nextInt();
             switch (choose) {

@@ -11,11 +11,11 @@ public class DepartmentManage implements Action<Department> {
         Department dep = new Department();
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter department ID: ");
-        String depID;
-        do {
+        String depID = sc.nextLine();
+        while (checkID(list, depID)) {
             System.out.println("Department ID is invalid!");
             depID = sc.nextLine();
-        } while (checkID(list, depID));
+        }
         dep.setDepID(depID);
         System.out.println("Enter department name: ");
         String depName = sc.nextLine();
@@ -98,9 +98,9 @@ public class DepartmentManage implements Action<Department> {
 
     @Override
     public void sort(ArrayList<Department> list) {
-        for (int i = 0; i < list.size() - 1; i++) {
+        for (int i = 0; i < list.size(); i++) {
             for (int j = i + 1; j < list.size(); j++) {
-                if (list.get(i).getDepSalary() > list.get(j).getDepSalary()) {
+                if (list.get(i).getDepID().compareTo(list.get(j).getDepID()) > 0) {
                     Department temp = list.get(i);
                     list.set(i, list.get(j));
                     list.set(j, temp);

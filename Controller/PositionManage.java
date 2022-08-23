@@ -12,11 +12,11 @@ public class PositionManage implements Action<Position> {
         Position pos = new Position();
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter position ID: ");
-        String posID;
-        do {
+        String posID = sc.nextLine();
+        while (checkID(list, posID)) {
             System.out.println("Position ID is invalid!");
             posID = sc.nextLine();
-        } while (checkID(list, posID));
+        }
         pos.setPosID(posID);
         System.out.println("Enter position name: ");
         String posName = sc.nextLine();
