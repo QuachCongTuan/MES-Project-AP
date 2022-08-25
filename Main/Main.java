@@ -1,6 +1,7 @@
 package Main;
 
 import Interface.Action;
+import Interface.AdminBuilder;
 import Model.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -8,6 +9,24 @@ import Controller.*;
 
 public class Main {
     public static void main(String[] args) {
+
+        // Admin
+        Admin adminBuilder1 = new AdminConcreteBuilder()
+                .setID("admin-01")
+                .setName("Quach Cong Tuan")
+                .setEmail("tuanqc@fpt.edu.vn")
+                .setPhone(19008888)
+                .setRole("Admin Manager")
+                .build();
+        Admin adminBuilder2 = new AdminConcreteBuilder()
+                .setID("admin-02")
+                .setName("Pham Duc My")
+                .setEmail("mypd@fpt.edu.vn")
+                .setPhone(19008889)
+                .setRole("Data Manager")
+                .build();
+
+        // Create Controller
         Department dep1 = new Department("DEV", "Developer", 20.0);
         Department dep2 = new Department("QA", "Quality Assurance", 15.0);
         Department dep3 = new Department("HR", "Human Resource", 10.0);
@@ -25,7 +44,6 @@ public class Main {
 
         DepartmentManage depManage = new DepartmentManage();
         ArrayList<Employee> empList = new ArrayList<Employee>();
-
         EmployeeManage empManage = new EmployeeManage();
         ArrayList<Position> posList = new ArrayList<Position>();
         posList.add(pos1);
@@ -45,6 +63,7 @@ public class Main {
             System.out.println("||||        [3]   Employee Manage                      ||||");
             System.out.println("||||        [4]   Salary Manage                        ||||");
             System.out.println("||||        [5]   Exit                                 ||||");
+            System.out.println("||||        [6]   Support 24/7                         ||||");
             System.out.println("||||                                                   ||||");
             System.out.println("==========================================================");
             System.out.println("==========================================================");
@@ -64,8 +83,7 @@ public class Main {
                         System.out.println("||      [3]   Delete Department                    ||");
                         System.out.println("||      [4]   Show Department                      ||");
                         System.out.println("||      [5]   Search Department                    ||");
-                        System.out.println("||      [6]   Sort Department                      ||");
-                        System.out.println("||      [7]   Back                                 ||");
+                        System.out.println("||      [6]   Back                                 ||");
                         System.out.println("||                                                 ||");
                         System.out.println("=====================================================");
                         depChoose = sc.nextInt();
@@ -86,9 +104,6 @@ public class Main {
                                 depManage.search(depList);
                                 break;
                             case 6:
-                                depManage.sort(depList);
-                                break;
-                            case 7:
                                 check = false;
                                 break;
                             default:
@@ -112,8 +127,7 @@ public class Main {
                         System.out.println("||      [3]   Delete Position                      ||");
                         System.out.println("||      [4]   Show Position                        ||");
                         System.out.println("||      [5]   Search Position                      ||");
-                        System.out.println("||      [6]   Sort Position                        ||");
-                        System.out.println("||      [7]   Back                                 ||");
+                        System.out.println("||      [6]   Back                                 ||");
                         System.out.println("||                                                 ||");
                         System.out.println("=====================================================");
                         posChoose = sc.nextInt();
@@ -134,9 +148,6 @@ public class Main {
                                 posManage.search(posList);
                                 break;
                             case 6:
-                                posManage.sort(posList);
-                                break;
-                            case 7:
                                 check2 = false;
                                 break;
                             default:
@@ -160,8 +171,7 @@ public class Main {
                         System.out.println("||      [3]   Delete Employee                      ||");
                         System.out.println("||      [4]   Show Employee                        ||");
                         System.out.println("||      [5]   Search Employee                      ||");
-                        System.out.println("||      [6]   Sort Employee                        ||");
-                        System.out.println("||      [7]   Back                                 ||");
+                        System.out.println("||      [6]   Back                                 ||");
                         System.out.println("||                                                 ||");
                         System.out.println("=====================================================");
                         empChoose = sc.nextInt();
@@ -182,9 +192,6 @@ public class Main {
                                 empManage.search(empList);
                                 break;
                             case 6:
-                                empManage.sort(empList);
-                                break;
-                            case 7:
                                 check3 = false;
                                 break;
                             default:
@@ -208,8 +215,7 @@ public class Main {
                         System.out.println("||      [3]   Delete Salary                        ||");
                         System.out.println("||      [4]   Show Salary                          ||");
                         System.out.println("||      [5]   Search Salary                        ||");
-                        System.out.println("||      [6]   Sort Salary                          ||");
-                        System.out.println("||      [7]   Back                                 ||");
+                        System.out.println("||      [6]   Back                                 ||");
                         System.out.println("||                                                 ||");
                         System.out.println("=====================================================");
                         salChoose = sc.nextInt();
@@ -229,6 +235,9 @@ public class Main {
                             case 5:
                                 salManage.search(salList);
                                 break;
+                            case 6:
+                                check4 = false;
+                                break;
                             default:
                                 System.out.println("Please choose again!");
                                 break;
@@ -236,6 +245,29 @@ public class Main {
                         if (check4 == false) {
                             break;
                         }
+                    }
+                    break;
+
+                case 5:
+                    System.exit(0);
+                    break;
+                case 6:
+                    int admin1 = 0;
+                    System.out.println("=====================================================");
+                    System.out.println("||                                                 ||");
+                    System.out.println("||            ADMIN                                ||");
+                    System.out.println("||      [1]   Show System Manager                  ||");
+                    System.out.println("||      [2]   Show Data Manager                    ||");
+                    System.out.println("||                                                 ||");
+                    System.out.println("=====================================================");
+                    admin1 = sc.nextInt();
+                    switch (admin1) {
+                        case 1:
+                            System.out.println(adminBuilder1);
+                            break;
+                        case 2:
+                            System.out.println(adminBuilder2);
+                            break;
                     }
                     break;
             }

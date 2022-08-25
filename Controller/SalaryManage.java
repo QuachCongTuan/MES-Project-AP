@@ -25,12 +25,6 @@ public class SalaryManage implements ActionSalary<Salary, Employee> {
     }
 
     @Override
-    public void sort(ArrayList<Salary> list) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
     public Salary add(ArrayList<Salary> list, ArrayList<Employee> list2) {
         Salary sal = new Salary();
         Scanner sc = new Scanner(System.in);
@@ -74,22 +68,31 @@ public class SalaryManage implements ActionSalary<Salary, Employee> {
         System.out.println("Enter Salary ID: ");
         String salaryID = sc.nextLine();
         int countsal = 0;
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getSalaryID().equals(salaryID)) {
+        System.out.println("_________________________________");
+        System.out.println("|       Choose function:        |");
+        System.out.println("|_______________________________|");
+        System.out.println("|   [1] Edit Employee ID        |");
+        System.out.println("|   [2] Edit Date               |");
+        System.out.println("|   [3] Exit                    |");
+        System.out.println("|_______________________________|");
+        System.out.println("Enter your choice: ");
+        int choice = sc.nextInt();
+        switch (choice) {
+            case 1:
                 System.out.println("Enter Employee ID: ");
                 String empID = sc.nextLine();
-                int countemp = 0;
-                for (int j = 0; j < list2.size(); j++) {
-                    if (list2.get(j).getEmpID().equals(empID)) {
-                        list.get(i).setEmp(list2.get(j));
-
+                for (int i = 0; i < list2.size(); i++) {
+                    if (list2.get(i).getEmpID().equals(empID)) {
+                        list.get(countsal).setEmp(list2.get(i));
                     } else {
-                        countemp++;
+                        countsal++;
                     }
                 }
-                if (countemp == list2.size()) {
+                if (countsal == list2.size()) {
                     System.out.println("Employee not found");
                 }
+                break;
+            case 2:
                 System.out.println("Enter Date: dd-MM-yyyy");
                 String date = sc.nextLine();
                 SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
@@ -99,11 +102,16 @@ public class SalaryManage implements ActionSalary<Salary, Employee> {
                 } catch (ParseException ex) {
 
                 }
-                list.get(i).setSalaryDate(time1);
-                countsal++;
-            }
+                list.get(countsal).setSalaryDate(time1);
+                break;
+            case 3:
+                return false;
+            default:
+                System.out.println("Invalid choice!");
+                break;
         }
-        return false;
+        return true;
+
     }
 
     @Override

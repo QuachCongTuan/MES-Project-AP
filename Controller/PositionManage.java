@@ -87,18 +87,6 @@ public class PositionManage implements Action<Position> {
         }
     }
 
-    @Override
-    public void sort(ArrayList<Position> list) {
-        for (int i = 0; i < list.size() - 1; i++) {
-            for (int j = i + 1; j < list.size(); j++) {
-                if (list.get(i).getPosID().compareTo(list.get(j).getPosID()) > 0) {
-                    Position temp = list.get(i);
-                    list.set(i, list.get(j));
-                    list.set(j, temp);
-                }
-            }
-        }
-    }
 
     @Override
     public boolean checkID(ArrayList<Position> list, String id) {

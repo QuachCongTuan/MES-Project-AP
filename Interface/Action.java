@@ -1,7 +1,7 @@
 package Interface;
 
 import java.util.ArrayList;
-
+/* Quach Cong Tuan */
 public interface Action<T> {
     public Object add(ArrayList<T> list);
 
@@ -13,7 +13,7 @@ public interface Action<T> {
 
     public void search(ArrayList<T> list);
 
-    public void sort(ArrayList<T> list);
-
     public boolean checkID(ArrayList<T> list, String id);
 }
+
+
