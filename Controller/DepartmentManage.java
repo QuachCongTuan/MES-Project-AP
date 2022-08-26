@@ -10,17 +10,23 @@ public class DepartmentManage implements Action<Department> {
     public Department add(ArrayList<Department> list) {
         Department dep = new Department();
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter department ID: ");
+        System.out.println("Enter Department ID: ");
         String depID = sc.nextLine();
         while (checkID(list, depID)) {
-            System.out.println("Department ID is invalid!");
+            System.out.println("Department ID is invalid! Please Enter Department ID again: ");
             depID = sc.nextLine();
         }
+
+        while (depID.contains(" ") || depID.equals("")) {
+            System.out.println("[SOS]   *Please don't enter space! Please Enter Department ID again* ");
+            depID = sc.nextLine();
+        }
+
         dep.setDepID(depID);
-        System.out.println("Enter department name: ");
+        System.out.println("Enter Department name: ");
         String depName = sc.nextLine();
         dep.setDepName(depName);
-        System.out.println("Enter department salary: ");
+        System.out.println("Enter Department salary: ");
         Double depSalary = sc.nextDouble();
         dep.setDepSalary(depSalary);
         return dep;
@@ -95,7 +101,6 @@ public class DepartmentManage implements Action<Department> {
             }
         }
     }
-
 
     public ArrayList<Department> getList() {
         return null;

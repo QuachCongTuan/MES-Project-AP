@@ -4,29 +4,31 @@ public class Employee {
     public String empID;
     public String empName;
     public String empEmail;
-    private double workingHours;
     private Department dep;
     private Position pos;
 
-    // public Employee() {
-    //     super();
-    // }
 
-    // public Employee(String empID, String empName, String empEmail, double workingHours, Department dep, Position pos) {
-    //     this.empID = empID;
-    //     this.empName = empName;
-    //     this.empEmail = empEmail;
-    //     this.workingHours = workingHours;
-    //     this.dep = dep;
-    //     this.pos = pos;
-    // }
+    public Employee() {
+        super();
+    }
+
+    public Employee(String empID, String empName, String empEmail, Department dep, Position pos) {
+        this.empID = empID;
+        this.empName = empName;
+        this.empEmail = empEmail;
+        this.dep = dep;
+        this.pos = pos;
+    }
 
     public String getEmpID() {
         return empID;
     }
 
     public void setEmpID(String empID) {
+        // Không chọn khoảng trắng
+
         this.empID = empID;
+
     }
 
     public String getEmpName() {
@@ -45,14 +47,6 @@ public class Employee {
         this.empEmail = empEmail;
     }
 
-    public double getWorkingHours() {
-        return workingHours;
-    }
-
-    public void setWorkingHours(double workingHours) {
-        this.workingHours = workingHours;
-    }
-
     public Department getDep() {
         return dep;
     }
@@ -68,5 +62,8 @@ public class Employee {
     public void setPos(Position pos) {
         this.pos = pos;
     }
-
 }
+
+
+
+

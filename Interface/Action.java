@@ -1,6 +1,7 @@
 package Interface;
 
 import java.util.ArrayList;
+
 /* Quach Cong Tuan */
 public interface Action<T> {
     public Object add(ArrayList<T> list);
@@ -15,5 +16,3 @@ public interface Action<T> {
 
     public boolean checkID(ArrayList<T> list, String id);
 }
-
-

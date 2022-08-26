@@ -1,24 +1,10 @@
 package Controller;
-
 import Interface.ActionEmp;
 import Model.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class EmployeeManage implements ActionEmp<Employee, Department, Position> {
-
-    @Override
-    public Object add(ArrayList<Employee> list) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public boolean edit(ArrayList<Employee> list) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
     @Override
     public Employee add(ArrayList<Employee> list, ArrayList<Department> list2, ArrayList<Position> list3) {
         Employee emp = new Employee();
@@ -26,7 +12,11 @@ public class EmployeeManage implements ActionEmp<Employee, Department, Position>
         System.out.println("Enter Employee ID: ");
         String empID = sc.nextLine();
         while (checkID(list, empID)) {
-            System.out.println("Employee ID is Invalid!");
+            System.out.println("Employee ID is Invalid! Please Enter Employee ID again: ");
+            empID = sc.nextLine();
+        }
+        while (empID.contains(" ") || empID.equals("")) {
+            System.out.println("[SOS]   *Please don't enter space! Please Enter Employee ID again* ");
             empID = sc.nextLine();
         }
         emp.setEmpID(empID);
@@ -36,9 +26,6 @@ public class EmployeeManage implements ActionEmp<Employee, Department, Position>
         System.out.println("Enter Employee Email: ");
         String empEmail = sc.nextLine();
         emp.setEmpEmail(empEmail);
-        System.out.println("Enter Working Hours: ");
-        double workingHours = sc.nextDouble();
-        emp.setWorkingHours(workingHours);
         System.out.println("Enter Department ID: ");
         sc = new Scanner(System.in);
         String depID = sc.nextLine();
@@ -83,7 +70,6 @@ public class EmployeeManage implements ActionEmp<Employee, Department, Position>
         System.out.println("|_______________________________|");
         System.out.println("|   [1] Edit Employee Name      |");
         System.out.println("|   [2] Edit Employee Email     |");
-        System.out.println("|   [3] Edit Working Hours      |");
         System.out.println("|   [4] Edit Department         |");
         System.out.println("|   [5] Edit Position           |");
         System.out.println("|   [6] Exit                    |");
@@ -103,11 +89,6 @@ public class EmployeeManage implements ActionEmp<Employee, Department, Position>
                         String empEmail = sc.nextLine();
                         list.get(i).setEmpEmail(empEmail);
                         break;
-                    case 3:
-                        System.out.println("Enter Working Hours: ");
-                        double workingHours = sc.nextDouble();
-                        list.get(i).setWorkingHours(workingHours);
-                        break;
                     case 4:
                         System.out.println("Enter Department ID: ");
                         String depID = sc.nextLine();
@@ -115,6 +96,8 @@ public class EmployeeManage implements ActionEmp<Employee, Department, Position>
                         for (int j = 0; j < list2.size(); j++) {
                             if (list2.get(j).getDepID().equals(depID)) {
                                 list.get(i).setDep(list2.get(j));
+
+                                
                             } else {
                                 countdep++;
                             }
@@ -168,13 +151,13 @@ public class EmployeeManage implements ActionEmp<Employee, Department, Position>
 
     @Override
     public void show(ArrayList<Employee> list) {
+        System.out.printf("|%-10s|%-20s|%-30s|%-30s|%-30s|%n", "ID", "Name", "Email",
+                "Department", "Position");
+        System.out.printf("|%-10s|%-20s|%-30s|%-30s|%-30s|%n", "_________", "_______________", "_________________",
+                "_________________", "_____________________", "__________________");
         for (int i = 0; i < list.size(); i++) {
-            System.out.printf("|%-20s|%-20s|%-20s|%-20s|%-30s|%-30s|%n", "ID", "Name", "Email", "Working Hours",
-                    "Department", "Position");
-            System.out.printf("|%-20s|%-20s|%-20s|%-20s|%-30s|%-30s|%n", "_________", "____________", "______________",
-                    "_____________", "_________________", "______________");
-            System.out.printf("|%-20s|%-20s|%-20s|%-20s|%-30s|%-30s|%n", list.get(i).getEmpID(),
-                    list.get(i).getEmpName(), list.get(i).getEmpEmail(), list.get(i).getWorkingHours(),
+            System.out.printf("|%-10s|%-20s|%-30s|%-30s|%-30s|%n", list.get(i).getEmpID(),
+                    list.get(i).getEmpName(), list.get(i).getEmpEmail(),
                     list.get(i).getDep().getDepName(), list.get(i).getPos().getPosName());
         }
     }
@@ -186,10 +169,10 @@ public class EmployeeManage implements ActionEmp<Employee, Department, Position>
         String empID = sc.nextLine();
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getEmpID().equals(empID)) {
-                System.out.printf("|%-10s|%-20s|%-20s|%-10s|%-10s|%-10s|%n", "ID", "Name", "Email", "Working Hours",
+                System.out.printf("|%-10s|%-20s|%-20s|%-10s|%-10s|%n", "ID", "Name", "Email",
                         "Department", "Position");
-                System.out.printf("|%-10s|%-20s|%-20s|%-10s|%-10s|%-10s|%n", list.get(i).getEmpID(),
-                        list.get(i).getEmpName(), list.get(i).getEmpEmail(), list.get(i).getWorkingHours(),
+                System.out.printf("|%-10s|%-20s|%-20s|%-10s|%-10s|%n", list.get(i).getEmpID(),
+                        list.get(i).getEmpName(), list.get(i).getEmpEmail(),
                         list.get(i).getDep().getDepName(), list.get(i).getPos().getPosName());
             }
         }
@@ -202,6 +185,34 @@ public class EmployeeManage implements ActionEmp<Employee, Department, Position>
                 return true;
             }
         }
+        return false;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @Override
+    public Object add(ArrayList<Employee> list) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public boolean edit(ArrayList<Employee> list) {
+        // TODO Auto-generated method stub
         return false;
     }
 

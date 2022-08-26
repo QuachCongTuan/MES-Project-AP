@@ -2,7 +2,10 @@ package Main;
 
 import Interface.Action;
 import Interface.AdminBuilder;
+import Interface.Iterator;
 import Model.*;
+import java.text.SimpleDateFormat;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Scanner;
 import Controller.*;
@@ -35,24 +38,39 @@ public class Main {
         Position pos2 = new Position("JUN", "Junior", 30.0);
         Position pos3 = new Position("SEN", "Senior", 55.5);
 
+        Employee emp1 = new Employee("BHA1", "Luon Duc My", "myld@fpt.edu.vn", dep1, pos3);
+        Employee emp2 = new Employee("BHA2", "Luon Quoc Huy", "huy@fpt.edu.vn", dep3, pos2);
+        Employee emp3 = new Employee("BHA3", "Luon Van Manh", "manh@fpt.edu.vn", dep2, pos2);
+
         System.out.println("Management Employee System");
+
+        WorkingHoursManager whManage = new WorkingHoursManager();
+        ArrayList<WorkingHours> whList = new ArrayList<WorkingHours>();
+
+        SalaryManage salManager = new SalaryManage();
+        ArrayList<Salary> salList = new ArrayList<Salary>();
+
+        DepartmentManage depManage = new DepartmentManage();
         ArrayList<Department> depList = new ArrayList<Department>();
+
+        PositionManage posManage = new PositionManage();
+        ArrayList<Position> posList = new ArrayList<Position>();
+
+        EmployeeManage empManage = new EmployeeManage();
+        ArrayList<Employee> empList = new ArrayList<Employee>();
 
         depList.add(dep1);
         depList.add(dep2);
         depList.add(dep3);
 
-        DepartmentManage depManage = new DepartmentManage();
-        ArrayList<Employee> empList = new ArrayList<Employee>();
-        EmployeeManage empManage = new EmployeeManage();
-        ArrayList<Position> posList = new ArrayList<Position>();
         posList.add(pos1);
         posList.add(pos2);
         posList.add(pos3);
 
-        PositionManage posManage = new PositionManage();
-        ArrayList<Salary> salList = new ArrayList<Salary>();
-        SalaryManage salManage = new SalaryManage();
+        empList.add(emp1);
+        empList.add(emp2);
+        empList.add(emp3);
+
         while (true) {
             System.out.println("==========================================================");
             System.out.println("==========================================================");
@@ -61,9 +79,11 @@ public class Main {
             System.out.println("||||        [1]   Department Manage                    ||||");
             System.out.println("||||        [2]   Position Manage                      ||||");
             System.out.println("||||        [3]   Employee Manage                      ||||");
-            System.out.println("||||        [4]   Salary Manage                        ||||");
-            System.out.println("||||        [5]   Exit                                 ||||");
-            System.out.println("||||        [6]   Support 24/7                         ||||");
+            System.out.println("||||        [4]   Working Hours Manage                 ||||");
+            System.out.println("||||        [5]   Salary Manage                        ||||");
+            System.out.println("||||        [6]   Exit                                 ||||");
+            System.out.println("||||        [7]   Support 24/7                         ||||");
+            System.out.println("||||        [8]   Iterator Design Pattern              ||||");
             System.out.println("||||                                                   ||||");
             System.out.println("==========================================================");
             System.out.println("==========================================================");
@@ -205,35 +225,35 @@ public class Main {
                     break;
                 case 4:
                     boolean check4 = true;
-                    int salChoose = 0;
+                    int whChoose = 0;
                     while (true) {
                         System.out.println("=====================================================");
                         System.out.println("||                                                 ||");
-                        System.out.println("||            Salary Management System             ||");
-                        System.out.println("||      [1]   Add Salary                           ||");
-                        System.out.println("||      [2]   Edit Salary                          ||");
-                        System.out.println("||      [3]   Delete Salary                        ||");
-                        System.out.println("||      [4]   Show Salary                          ||");
-                        System.out.println("||      [5]   Search Salary                        ||");
+                        System.out.println("||            Working Hours Management System      ||");
+                        System.out.println("||      [1]   Add Working Hours                    ||");
+                        System.out.println("||      [2]   Edit Working Hours                   ||");
+                        System.out.println("||      [3]   Delete Working Hours                 ||");
+                        System.out.println("||      [4]   Show Working Hours                   ||");
+                        System.out.println("||      [5]   Search Working Hours                 ||");
                         System.out.println("||      [6]   Back                                 ||");
                         System.out.println("||                                                 ||");
                         System.out.println("=====================================================");
-                        salChoose = sc.nextInt();
-                        switch (salChoose) {
+                        whChoose = sc.nextInt();
+                        switch (whChoose) {
                             case 1:
-                                salList.add(salManage.add(salList, empList));
+                                whList.add(whManage.add(whList, empList));
                                 break;
                             case 2:
-                                salManage.edit(salList, empList);
+                                whManage.edit(whList, empList);
                                 break;
                             case 3:
-                                salManage.delete(salList);
+                                whManage.delete(whList);
                                 break;
                             case 4:
-                                salManage.show(salList);
+                                whManage.show(whList);
                                 break;
                             case 5:
-                                salManage.search(salList);
+                                whManage.search(whList);
                                 break;
                             case 6:
                                 check4 = false;
@@ -247,11 +267,55 @@ public class Main {
                         }
                     }
                     break;
-
                 case 5:
+                    boolean check5 = true;
+                    int payChoose = 0;
+                    while (true) {
+                        System.out.println("=====================================================");
+                        System.out.println("||                                                 ||");
+                        System.out.println("||            Salary Management System             ||");
+                        System.out.println("||      [1]   Add Salary                           ||");
+                        System.out.println("||      [2]   Edit Salary                          ||");
+                        System.out.println("||      [3]   Delete Salary                        ||");
+                        System.out.println("||      [4]   Show Salary                          ||");
+                        System.out.println("||      [5]   Search Salary                        ||");
+                        System.out.println("||      [6]   Back                                 ||");
+                        System.out.println("||                                                 ||");
+                        System.out.println("=====================================================");
+                        payChoose = sc.nextInt();
+                        switch (payChoose) {
+                            case 1:
+                                salList.add(salManager.add(salList, whList));
+                                break;
+                            case 2:
+                                salManager.edit(salList);
+                                break;
+                            case 3:
+                                salManager.delete(salList);
+                                break;
+                            case 4:
+                                salManager.show(salList);
+                                break;
+                            case 5:
+                                salManager.search(salList);
+                                break;
+                            case 6:
+                                check5 = false;
+                                break;
+                            default:
+                                System.out.println("Please choose again!");
+                                break;
+                        }
+                        if (check5 == false) {
+                            break;
+                        }
+                    }
+                    break;
+
+                case 6:
                     System.exit(0);
                     break;
-                case 6:
+                case 7:
                     int admin1 = 0;
                     System.out.println("=====================================================");
                     System.out.println("||                                                 ||");
@@ -268,6 +332,14 @@ public class Main {
                         case 2:
                             System.out.println(adminBuilder2);
                             break;
+                    }
+                    break;
+                case 8:
+                    // Iterator
+                    EmployeeRepository employeeRepository = new EmployeeRepository();
+                    for (Iterator iterator = employeeRepository.getIterator(); iterator.hasNext();) {
+                        String employee = (String) iterator.next();
+                        System.out.println("Employee: " + employee);
                     }
                     break;
             }

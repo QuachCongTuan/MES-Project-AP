@@ -14,9 +14,15 @@ public class PositionManage implements Action<Position> {
         System.out.println("Enter position ID: ");
         String posID = sc.nextLine();
         while (checkID(list, posID)) {
-            System.out.println("Position ID is invalid!");
+            System.out.println("Position ID is invalid! Please Enter Position ID again: ");
             posID = sc.nextLine();
         }
+
+        while (posID.contains(" ") || posID.equals("")) {
+            System.out.println("[SOS]   *Please don't enter space! Please Enter Position ID again* ");
+            posID = sc.nextLine();
+        }
+
         pos.setPosID(posID);
         System.out.println("Enter position name: ");
         String posName = sc.nextLine();
@@ -86,7 +92,6 @@ public class PositionManage implements Action<Position> {
             }
         }
     }
-
 
     @Override
     public boolean checkID(ArrayList<Position> list, String id) {

@@ -1,35 +1,44 @@
 package Model;
+
 import java.util.Date;
 
 public class Salary {
-    public String salaryID;
-    public Employee emp;
-    public Date salaryDate;
+    public String SalaryID;
+    public WorkingHours workingHoursID;
+    public Date DoReceip;
 
+    public Salary() {
 
-    public void setSalaryID(String salaryID) {
-        this.salaryID = salaryID;
+    }
+
+    public Salary(String SalaryID, WorkingHours workingHoursID, Date DoReceip) {
+        this.SalaryID = SalaryID;
+        this.workingHoursID = workingHoursID;
+        this.DoReceip = DoReceip;
     }
 
     public String getSalaryID() {
-        return salaryID;
+        return SalaryID;
     }
 
-    public Employee getEmp() {
-        return emp;
+    public void setSalaryID(String SalaryID) {
+        this.SalaryID = SalaryID;
     }
 
-    public void setEmp(Employee emp) {
-        this.emp = emp;
+    public WorkingHours getWorkingHoursID() {
+        return workingHoursID;
     }
 
-    public Date getSalaryDate() {
-        return salaryDate;
-    }
-    
-    public void setSalaryDate(Date salaryDate) {
-        this.salaryDate = salaryDate;
+    public void setWorkingHoursID(WorkingHours workingHoursID) {
+        this.workingHoursID = workingHoursID;
     }
 
-    
+    public Date getDoReceip() {
+        return DoReceip;
+    }
+
+    public void setDoReceip(Date DoReceip) {
+        this.DoReceip = DoReceip;
+    }
+
 }
